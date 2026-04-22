@@ -27,76 +27,89 @@ body {
     inset: 0;
     background: url("assets/12E157B3-F074-476A-8CD1-E7C124E8FEF9.gif") center/cover no-repeat;
     z-index: -3;
-    opacity: 0.45; /* adjust for visibility */
+    opacity: 0.45;
 }
 
-/* GREEN OVERLAY FOR MOOD */
+/* LIGHT DARK TINT */
 body::before {
     content: "";
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.15); /* very light dark tint */
+    background: rgba(0, 0, 0, 0.15);
     z-index: -2;
 }
-
 
 /* SOFT MIST LAYER */
 body::after {
     content: "";
     position: fixed;
     inset: 0;
-    background: rgba(255, 255, 255, 0.02); /* almost invisible */
+    background: rgba(255, 255, 255, 0.02);
     z-index: -1;
 }
 
-
 /* ---------------------------------------------------
-   FLASHCARDS
+   FLASHCARDS — GRID
 --------------------------------------------------- */
 .flashcard-section {
     width: 90%;
     max-width: 900px;
     margin: 60px auto 100px auto;
-    display: flex;
-    flex-direction: column;
+
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 25px;
 }
 
-/* FLASHCARD BASE */
+/* ---------------------------------------------------
+   FLASHCARD BASE — SQUARE CARDS
+--------------------------------------------------- */
 .flashcard {
-    background: rgba(83, 123, 47, 0.45); /* fern green translucent */
+    aspect-ratio: 1 / 1; /* perfect square */
+    background: rgba(83, 123, 47, 0.45);
     backdrop-filter: blur(10px);
     border-radius: 18px;
     border: 2px solid rgba(255,255,255,0.25);
     box-shadow: 0 4px 12px rgba(0,0,0,0.25);
-    padding: 22px 26px;
+    padding: 22px;
     cursor: pointer;
-    transition: transform 0.25s ease, background 0.25s ease;
+    transition: background 0.25s ease;
     overflow: hidden;
     position: relative;
     color: var(--green-soft);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 
-/* FRONT (TITLE) */
+/* FRONT (QUESTION) */
 .flashcard-front {
-    font-size: 1.4rem;
+    font-size: 1.35rem;
     font-weight: 600;
+    padding: 10px;
 }
 
-/* BACK (HIDDEN CONTENT) */
+/* BACK (ANSWER) */
 .flashcard-back {
-    font-size: 1.15rem;
-    line-height: 1.6rem;
-    margin-top: 14px;
+    font-size: 1.1rem;
+    line-height: 1.4rem;
+    padding: 10px;
     display: none;
     opacity: 0;
     transition: opacity 0.3s ease;
 }
 
-/* WHEN CARD IS OPEN */
+/* ---------------------------------------------------
+   OPEN STATE — SHOW ANSWER ONLY
+--------------------------------------------------- */
 .flashcard.open {
     background: rgba(83, 123, 47, 0.75);
-    transform: translateY(-4px);
+}
+
+.flashcard.open .flashcard-front {
+    display: none;
 }
 
 .flashcard.open .flashcard-back {
