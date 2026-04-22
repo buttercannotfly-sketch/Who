@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=1024">
-    <title>Ayesha's Space</title>
+    <title>My Space</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
@@ -13,79 +13,55 @@
 
 <body>
 
-<!-- BACKGROUND GIF -->
+<!-- BACKGROUND RAIN GIF -->
 <div class="bg-gif"></div>
 
-<!-- HEADER -->
-<header>
-    <div class="name-header">Ayesha</div>
-</header>
-
-<!-- INTRO CARD WITH TYPING -->
-<div class="intro-card">
-
-    <div class="gif-box">
-        <img id="corner-gif" src="assets/cat.gif">
-    </div>
-
-    <p id="typing-target">
-        <span id="cursor">|</span>
-    </p>
-
-</div>
-
-<!-- FLASHCARD SECTION -->
+<!-- FLASHCARDS ONLY -->
 <section class="flashcard-section">
 
-    <!-- CARD 1 -->
     <div class="flashcard" onclick="toggleCard(this)">
         <div class="flashcard-front">Who am I?</div>
         <div class="flashcard-back">
-            <p>I am Ayesha — a curious, creative soul who builds magical digital spaces and collects hobbies like treasures.</p>
+            <p>I am someone who enjoys creating, exploring, and building meaningful digital spaces.</p>
         </div>
     </div>
 
-    <!-- CARD 2 -->
     <div class="flashcard" onclick="toggleCard(this)">
         <div class="flashcard-front">What is this site?</div>
         <div class="flashcard-back">
-            <p>This is my personal corner of the internet — a soft, pastel world where I store thoughts, projects, and fun experiments.</p>
+            <p>This space is a personal collection of thoughts, ideas, and creative experiments.</p>
         </div>
     </div>
 
-    <!-- CARD 3 -->
     <div class="flashcard" onclick="toggleCard(this)">
         <div class="flashcard-front">What do I love?</div>
         <div class="flashcard-back">
-            <p>I love storytelling, design, coding, and creating things that feel warm, intentional, and a little magical.</p>
+            <p>I love storytelling, design, coding, and creating things that feel intentional and atmospheric.</p>
         </div>
     </div>
 
 </section>
 
-<!-- TYPING SCRIPT -->
+<!-- RAIN AUDIO -->
+<audio id="rain-audio" src="assets/rain.mp3" loop></audio>
+
 <script>
-    const text = " redacted text ";
-    const target = document.getElementById("typing-target");
-    const cursor = document.getElementById("cursor");
-    const gif = document.getElementById("corner-gif");
+    /* Start rain sound after first interaction */
+    const rainAudio = document.getElementById("rain-audio");
+    let rainStarted = false;
 
-    let i = 0;
-
-    function typeLetter() {
-        if (i < text.length) {
-            cursor.insertAdjacentText("beforebegin", text.charAt(i));
-            i++;
-            setTimeout(typeLetter, 80);
-        } else {
-            gif.src = "assets/cat.png";
-            cursor.style.display = "none";
+    function startRainSound() {
+        if (!rainStarted) {
+            rainAudio.volume = 0.35;
+            rainAudio.play();
+            rainStarted = true;
         }
     }
 
-    typeLetter();
+    document.addEventListener("click", startRainSound);
+    document.addEventListener("touchstart", startRainSound);
 
-    /* FLASHCARD TOGGLE */
+    /* Flashcard toggle */
     function toggleCard(card) {
         card.classList.toggle("open");
     }
