@@ -25,7 +25,7 @@ body {
 .bg-gif {
     position: fixed;
     inset: 0;
-    background: url("assets/rain.gif") center/cover no-repeat;
+    background: url("assets/12E157B3-F074-476A-8CD1-E7C124E8FEF9.gif") center/cover no-repeat;
     z-index: -3;
     opacity: 0.45; /* adjust for visibility */
 }
