@@ -35,23 +35,20 @@ body::before {
     content: "";
     position: fixed;
     inset: 0;
-    background: linear-gradient(
-        90deg,
-        rgba(20, 44, 20, 0.75),
-        rgba(45, 81, 40, 0.55),
-        rgba(83, 123, 47, 0.45)
-    );
+    background: rgba(0, 0, 0, 0.15); /* very light dark tint */
     z-index: -2;
 }
+
 
 /* SOFT MIST LAYER */
 body::after {
     content: "";
     position: fixed;
     inset: 0;
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.02); /* almost invisible */
     z-index: -1;
 }
+
 
 /* ---------------------------------------------------
    FLASHCARDS
